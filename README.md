@@ -6,13 +6,10 @@ The motivation of this project is to build a machine learning pipeline for categ
 
 This project in form of a web app takes as input any text message and categorizes the emergency using a supervised machine learning model. This machine learning model was trainied on pre-labeled tweets, news and text messageas from a real life disasters data set provided by [Figure Eight](https://appen.com/resources/datasets/)
 
-The web app files are compiled for cloning the repository to local computer, activating via terminal and using offline on the browser.
-Furthermore this webapp has been uploaded on Heroku and can be viewed [here](https://drp.herokuapp.com/).
-
 
 ## Configuration
 * HTML, CSS, Javascript
-* Python 3 with libraries bootstrap, plotly (Front-end) and flask, pandas, numpy, json, sklearn, nltk, sqlalchemy (Back-end)
+* Python 3 with libraries plotly, flask, pandas, numpy, sklearn, nltk, sqlalchemy (Back-end)
 
 
 ## Installation on local computer
@@ -22,7 +19,7 @@ For setting up your database and model you need to start the installation with s
 
   - run ETL pipeline that cleans data and stores in database
     `python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/drp.db`
-  - run ML pipeline that trains classifier and saves
+  - run ML pipeline that trains classifier and saves (info: this takes a few hours)
     `python models/train_classifier.py data/drp.db models/classifier.pkl`
 
 2. Run the following command in the app's directory to run your web app.
@@ -30,7 +27,7 @@ For setting up your database and model you need to start the installation with s
 
 3. open browser and type in url (for windows): http://localhost:5000/
 
-Once opening the web app you will see the following: The screenshot on the left side shows the main page of the web app while the screenshot on the right side shows the classification result page.
+Below are two screenshoots how the web app looks like: The screenshot on the left side shows the main page of the web app and the screenshot on the right side shows the classification result page.
 
 <table align="center">
 	<tr>
@@ -59,12 +56,10 @@ Below you can find the folder structure of the web app:
       |- disaster_categories.csv (csv file with data to process)
       |- disaster_messages.csv (csv file with data to process)
       |- drp.db (database with repaired data created with ETL Pipeline)
-      |- ETL Pipeline Preparation.ipynb (ipynb file with ETL Pipeline preparation file)
       |- process_data.py (python file with ETL Pipeline)
 
       - models
       |- classifier.pkl (file with saved supervised learning model)
-      |- ML Pipeline Preparation.ipynb (ipynb file with ML Pipeline preparation file)
       |- train_classifier.py (python file with ML Pipeline)
 
       - png (folder with png screenshot files for README)
