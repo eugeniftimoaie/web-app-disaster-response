@@ -73,6 +73,8 @@ def clean_data(df):
 
         # convert column from string to numeric
         categories[column] = categories[column].astype(int)
+    # replace all '2' into '1' in categories.related column as they were probably inserted by mistake
+    categories.related[categories['related'] == 2] = 1
 
     # drop the original categories column from `df`
     del df['categories']

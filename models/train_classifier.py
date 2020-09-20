@@ -97,7 +97,7 @@ def build_model():
     # build pipeline
     pipeline = Pipeline([
     ('vect', CountVectorizer(tokenizer = tokenize)),
-    #('tfidf', TfidfTransformer()),
+    ('tfidf', TfidfTransformer()),
     ('clf', MultiOutputClassifier(DecisionTreeClassifier()))
     ])
 
@@ -142,11 +142,13 @@ def evaluate_model(model, X_test, Y_test, category_names):
         results.at[i + 1, 'recall'] = recall
         i += 1
 
+    # print dataframe results
+    print (results)
     # print mean scores of all target variables (features)
     print('Overall f1_score: ', '{:.4}'.format(results['f1_score'].mean()))
     print('Overall precision: ', '{:.4}'.format(results['precision'].mean()))
     print('Overall recall: ', '{:.4}'.format(results['recall'].mean()))
-    return results
+    #return results
 
 
 def save_model(model, model_filepath):
@@ -180,7 +182,7 @@ def main():
         model.fit(X_train, Y_train)
 
         print('Evaluating model...')
-        evaluate_model(model, X_test, Y_test, category_names)
+        print(evaluate_model(model, X_test, Y_test, category_names))
 
         print('Saving model...\n    MODEL: {}'.format(model_filepath))
         save_model(model, model_filepath)
